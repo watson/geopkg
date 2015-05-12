@@ -8,11 +8,18 @@ var geopkg = require('./lib/geopkg')
 
 test('#locate()', function (t) {
   geopkg.locate(function (err, loc) {
-    t.error(err)
-    t.equals(typeof loc, 'object')
-    t.ok(Number.isFinite(loc.accuracy))
-    t.ok(Number.isFinite(loc.latitude))
-    t.ok(Number.isFinite(loc.longitude))
+    if (err) {
+      // if the test machine doesn't support wifi scanning, we can only test
+      // that the module correctly detects that but not that it would have
+      // worked as expected if it was supported
+      t.equals(err.message, 'No scanning utility found')
+      t.equals(loc, undefined)
+    } else {
+      t.equals(typeof loc, 'object')
+      t.ok(Number.isFinite(loc.accuracy))
+      t.ok(Number.isFinite(loc.latitude))
+      t.ok(Number.isFinite(loc.longitude))
+    }
     t.end()
   })
 })
