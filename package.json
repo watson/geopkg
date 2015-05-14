@@ -30,7 +30,7 @@
   "preferGlobal": true,
   "dependencies": {
     "opn": "^1.0.2",
-    "wifi-location": "0.0.1"
+    "wifi-location": "git://github.com/watson/wifi-location.git#51eca87"
   },
   "devDependencies": {
     "standard": "^3.8.0",
