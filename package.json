@@ -44,7 +44,7 @@
     "url": "https://github.com/watson/geopkg/issues"
   },
   "homepage": "https://github.com/watson/geopkg",
-  "location": [
+  "coordinates": [
     55.808006,
     12.502957
   ]

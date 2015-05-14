@@ -40,7 +40,7 @@ test('#updatePkg()', function (t) {
           t.error(e)
         }
         t.equals(data.foo, 'bar')
-        t.deepEquals(data.location, [1.1, 1.2])
+        t.deepEquals(data.coordinates, [1.1, 1.2])
         t.end()
       })
     })

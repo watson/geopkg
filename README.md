@@ -22,25 +22,25 @@ directory:
 geopkg
 ```
 
-This will update your `package.json` file with a `location` property
+This will update your `package.json` file with a `coordinates` property
 holding the lat/long coordinates:
 
 ```json
 {
-  "location": [55.8079696, 12.502925]
+  "coordinates": [55.8079696, 12.502925]
 }
 ```
 
-### Validate location
+### Validate coordinates
 
-You can easily validate that the location is correct by running:
+You can easily validate that the coordinates is correct by running:
 
 ```
 geopkg open
 ```
 
-This should open up Google Maps zoomed to the the detected location in
-your favorite browser.
+This should open up Google Maps zoomed to the the detected coordinates
+in your favorite browser.
 
 ## License
 
