@@ -25,7 +25,7 @@ geopkg.locate(function (err, loc) {
     return
   }
 
-  console.log('Found location - lat: %d, long: %d, accuracy: %d', loc.latitude, loc.longitude, loc.accuracy)
+  console.log('Found location - lat: %d, long: %d, accuracy: %d', loc.lat, loc.lng, loc.accuracy)
 
   if (open) {
     console.log('Opening location in browser...')

@@ -17,8 +17,8 @@ test('#locate()', function (t) {
     } else {
       t.equals(typeof loc, 'object')
       t.ok(Number.isFinite(loc.accuracy))
-      t.ok(Number.isFinite(loc.latitude))
-      t.ok(Number.isFinite(loc.longitude))
+      t.ok(Number.isFinite(loc.lat))
+      t.ok(Number.isFinite(loc.lng))
     }
     t.end()
   })
@@ -30,7 +30,7 @@ test('#updatePkg()', function (t) {
   process.chdir(dir)
   fs.writeFile(file, '{"foo":"bar"}', function (err) {
     t.error(err)
-    geopkg.updatePkg({ accuracy: 10, latitude: 1.1, longitude: 1.2 }, function (err) {
+    geopkg.updatePkg({ lat: 1.1, lng: 1.2, accuracy: 10 }, function (err) {
       t.error(err)
       fs.readFile(file, function (err, data) {
         t.error(err)
