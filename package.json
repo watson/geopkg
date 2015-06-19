@@ -30,11 +30,11 @@
   "license": "MIT",
   "preferGlobal": true,
   "dependencies": {
-    "opn": "^1.0.2",
-    "wifi-triangulate": "^1.0.0"
+    "opn": "^2.0.0",
+    "wifi-triangulate": "^1.1.0"
   },
   "devDependencies": {
-    "standard": "^3.8.0",
+    "standard": "^4.3.1",
     "tape": "^4.0.0"
   },
   "repository": {
