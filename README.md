@@ -19,7 +19,21 @@ Simply run the following command while in the root of your module
 directory:
 
 ```
-geopkg
+geopkg [command]
+```
+
+The commands are as follows:
+
+- `help` - Will output the help
+- `update` - Updates the current package.json with current coordinates
+  (default behavior is no command is given)
+- `open` - Opens the coordinates found in package.json in the browser
+- `preview` - Finds your current location and previews it in the browser
+
+### Update
+
+```
+geopkg update
 ```
 
 This will update your `package.json` file with a `coordinates` property
@@ -31,16 +45,29 @@ holding the lat/long coordinates:
 }
 ```
 
-### Validate coordinates
+### Open
 
-You can easily validate that the coordinates is correct by running:
+You can easily view the coordinates that the module in cwd is tagged
+with - just run:
 
 ```
 geopkg open
 ```
 
-This should open up Google Maps zoomed to the the detected coordinates
-in your favorite browser.
+This should open up Google Maps zoomed to the module coordinates in your
+favorite browser.
+
+### Preview
+
+To see your current location (regardless of what is written to
+package.json), run:
+
+```
+geopkg preview
+```
+
+This should open up Google Maps zoomed to the detected coordinates in
+your favorite browser.
 
 ## License
 

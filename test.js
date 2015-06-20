@@ -46,13 +46,3 @@ test('#updatePkg()', function (t) {
     })
   })
 })
-
-test('bin', function (t) {
-  var oldLocate = geopkg.locate
-  geopkg.locate = function (cb) {
-    t.equals(typeof cb, 'function')
-    geopkg.locate = oldLocate
-    t.end()
-  }
-  require('./index')
-})
