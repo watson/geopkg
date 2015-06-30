@@ -69,6 +69,29 @@ geopkg preview
 This should open up Google Maps zoomed to the detected coordinates in
 your favorite browser.
 
+## npm integration
+
+Newer versions of npm support a `postversion` hook which you can add to
+the package.json file in your module. Using this hook you can
+automatically geo-tag your modules when ever you run the `npm version`
+command.
+
+To achive this, do the following:
+
+1. Install geopkg as a development dependency:
+
+ ```
+ npm install --save-dev geopkg
+ ```
+
+2. Add a `postversion` hook to the package.json file:
+
+  ```js
+  "scripts": {
+    "postversion": "tag=`git describe --exact-match --tags $(git log -n1 --pretty='%h')` && geopkg && git add -A && git commit -C HEAD --amend && git tag $tag -f"
+  }
+  ```
+
 ## License
 
 MIT
