@@ -32,7 +32,7 @@
   "preferGlobal": true,
   "dependencies": {
     "opn": "^3.0.2",
-    "wifi-triangulate": "^1.1.0"
+    "wifi-triangulate": "^1.1.1"
   },
   "devDependencies": {
     "standard": "^4.3.1",
