@@ -1,7 +1,7 @@
 {
   "name": "geopkg",
   "version": "2.1.2",
-  "description": "Tag npm moduels with lat/long of where on the planet the module was published",
+  "description": "Tag npm modules with lat/long of where on the planet the module was published.",
   "bin": {
     "geopkg": "index.js"
   },
