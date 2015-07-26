@@ -62,8 +62,8 @@ function open () {
     console.log('The current package.json doesn\'t contain any coordinates!')
   }
 
-    console.error('To view your current location, type `geopkg preview`')
-    process.exit(1)
+  console.error('To view your current location, type `geopkg preview`')
+  process.exit(1)
 }
 
 function preview () {
