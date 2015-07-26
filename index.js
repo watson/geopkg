@@ -48,20 +48,14 @@ function update () {
 }
 
 function open () {
-  try {
-    var targetPkg = require(path.join(process.cwd(), 'package'))
-  } catch (e) {
+  var currentCoords = geopkg.getPackageCoords()
+  if (currentCoords) {
+    return geopkg.openMaps(currentCoords, _done)
+  } else {
     console.error('Could not find a package.json in the current working directory!')
     console.error('To view your current location, type `geopkg preview`')
     process.exit(1)
-    return
   }
-
-  if (targetPkg.coordinates) return geopkg.openMaps(targetPkg.coordinates, _done)
-
-  console.log('The current package.json doesn\'t contain any coordinates!')
-  console.log('To view your current location, type `geopkg preview`')
-  process.exit(1)
 }
 
 function preview () {
