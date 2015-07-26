@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict'
 
-var path = require('path')
 var geopkg = require('./lib/geopkg')
 var pkg = require('./package')
 
@@ -82,9 +81,10 @@ function interactive () {
     })
   }
 
-  function selectCoordsInteractively(loc) {
+  function selectCoordsInteractively (loc) {
     console.log('Opening location in browser...')
     geopkg.openMapWithDraggableMarker(loc, function (err, newLoc) {
+      if (err) return _done(err)
       console.log('Updating package.json...')
       geopkg.updatePkg(newLoc, _done)
     })
