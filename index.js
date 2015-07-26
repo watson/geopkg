@@ -20,6 +20,9 @@ switch (cmd) {
   case 'preview':
     preview()
     break
+  case 'interactive':
+    interactive()
+    break
   default:
     _unknown(cmd)
 }
@@ -31,10 +34,11 @@ function help () {
     'Usage: ' + pkg.name + ' [command]\n\n' +
     'If no commands are given, the default "update" command is run\n\n' +
     'Commands:\n' +
-    '  help      Show this help\n' +
-    '  update    Updates the current package.json with current coordinates\n' +
-    '  open      Opens the coordinates found in package.json in the browser\n' +
-    '  preview   Finds your current location and previews it in the browser'
+    '  help         Show this help\n' +
+    '  update       Updates the current package.json with current coordinates\n' +
+    '  open         Opens the coordinates found in package.json in the browser\n' +
+    '  preview      Finds your current location and previews it in the browser\n' +
+    '  interacive   Choose coordinates interactively by dragging a marker on a map\n'
   )
   process.exit()
 }
@@ -64,6 +68,27 @@ function preview () {
     console.log('Opening location in browser...')
     geopkg.openMaps(loc, _done)
   })
+}
+
+function interactive () {
+  var currentCoords = geopkg.getPackageCoords()
+  if (currentCoords) {
+    currentCoords = { lat: currentCoords[0], lng: currentCoords[1] }
+    selectCoordsInteractively(currentCoords)
+  } else {
+    _getLocation(function (err, loc) {
+      if (err) return _done(err)
+      selectCoordsInteractively(loc)
+    })
+  }
+
+  function selectCoordsInteractively(loc) {
+    console.log('Opening location in browser...')
+    geopkg.openMapWithDraggableMarker(loc, function (err, newLoc) {
+      console.log('Updating package.json...')
+      geopkg.updatePkg(newLoc, _done)
+    })
+  }
 }
 
 function _unknown (cmd) {
