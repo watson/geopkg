@@ -51,14 +51,19 @@ function update () {
 }
 
 function open () {
-  var currentCoords = geopkg.getPackageCoords()
-  if (currentCoords) {
-    return geopkg.openMaps(currentCoords, _done)
-  } else {
+  var currentPkg = geopkg.getPackage()
+  if (currentPkg && currentPkg.coordinates) {
+    return geopkg.openMaps(currentPkg.coordinates, _done)
+  }
+
+  if (!currentPkg) {
     console.error('Could not find a package.json in the current working directory!')
+  } else {
+    console.log('The current package.json doesn\'t contain any coordinates!')
+  }
+
     console.error('To view your current location, type `geopkg preview`')
     process.exit(1)
-  }
 }
 
 function preview () {
