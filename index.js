@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict'
 
-var path = require('path')
 var geopkg = require('./lib/geopkg')
 var pkg = require('./package')
 
@@ -20,6 +19,9 @@ switch (cmd) {
   case 'preview':
     preview()
     break
+  case 'interactive':
+    interactive()
+    break
   default:
     _unknown(cmd)
 }
@@ -31,10 +33,11 @@ function help () {
     'Usage: ' + pkg.name + ' [command]\n\n' +
     'If no commands are given, the default "update" command is run\n\n' +
     'Commands:\n' +
-    '  help      Show this help\n' +
-    '  update    Updates the current package.json with current coordinates\n' +
-    '  open      Opens the coordinates found in package.json in the browser\n' +
-    '  preview   Finds your current location and previews it in the browser'
+    '  help         Show this help\n' +
+    '  update       Updates the current package.json with current coordinates\n' +
+    '  open         Opens the coordinates found in package.json in the browser\n' +
+    '  preview      Finds your current location and previews it in the browser\n' +
+    '  interacive   Choose coordinates interactively by dragging a marker on a map\n'
   )
   process.exit()
 }
@@ -48,19 +51,18 @@ function update () {
 }
 
 function open () {
-  try {
-    var targetPkg = require(path.join(process.cwd(), 'package'))
-  } catch (e) {
-    console.error('Could not find a package.json in the current working directory!')
-    console.error('To view your current location, type `geopkg preview`')
-    process.exit(1)
-    return
+  var currentPkg = geopkg.getPackage()
+  if (currentPkg && currentPkg.coordinates) {
+    return geopkg.openMaps(currentPkg.coordinates, _done)
   }
 
-  if (targetPkg.coordinates) return geopkg.openMaps(targetPkg.coordinates, _done)
+  if (!currentPkg) {
+    console.error('Could not find a package.json in the current working directory!')
+  } else {
+    console.log('The current package.json doesn\'t contain any coordinates!')
+  }
 
-  console.log('The current package.json doesn\'t contain any coordinates!')
-  console.log('To view your current location, type `geopkg preview`')
+  console.error('To view your current location, type `geopkg preview`')
   process.exit(1)
 }
 
@@ -70,6 +72,28 @@ function preview () {
     console.log('Opening location in browser...')
     geopkg.openMaps(loc, _done)
   })
+}
+
+function interactive () {
+  var currentCoords = geopkg.getPackageCoords()
+  if (currentCoords) {
+    currentCoords = { lat: currentCoords[0], lng: currentCoords[1] }
+    selectCoordsInteractively(currentCoords)
+  } else {
+    _getLocation(function (err, loc) {
+      if (err) return _done(err)
+      selectCoordsInteractively(loc)
+    })
+  }
+
+  function selectCoordsInteractively (loc) {
+    console.log('Opening location in browser...')
+    geopkg.openMapWithDraggableMarker(loc, function (err, newLoc) {
+      if (err) return _done(err)
+      console.log('Updating package.json...')
+      geopkg.updatePkg(newLoc, _done)
+    })
+  }
 }
 
 function _unknown (cmd) {
