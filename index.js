@@ -43,8 +43,7 @@ function help () {
 }
 
 function update () {
-  _getLocation(function (err, loc) {
-    if (err) return _done(err)
+  _getLocation(function (loc) {
     console.log('Updating package.json...')
     geopkg.updatePkg(loc, _done)
   })
@@ -67,8 +66,7 @@ function open () {
 }
 
 function preview () {
-  _getLocation(function (err, loc) {
-    if (err) return _done(err)
+  _getLocation(function (loc) {
     console.log('Opening location in browser...')
     geopkg.openMaps(loc, _done)
   })
@@ -80,10 +78,7 @@ function interactive () {
     currentCoords = { lat: currentCoords[0], lng: currentCoords[1] }
     selectCoordsInteractively(currentCoords)
   } else {
-    _getLocation(function (err, loc) {
-      if (err) return _done(err)
-      selectCoordsInteractively(loc)
-    })
+    _getLocation(selectCoordsInteractively)
   }
 
   function selectCoordsInteractively (loc) {
@@ -106,20 +101,24 @@ function _unknown (cmd) {
 function _getLocation (cb) {
   console.log('Gathering location info...')
   geopkg.locate(function (err, loc) {
-    if (err) return cb(err)
-
-    if (!loc) {
+    if (err || !loc) {
       console.error('\nERROR: Could not find your location!')
       console.error('Your wifi needs to be turned on for %s to find your location', pkg.name)
       console.error('If the problem persists, please open an issue at:\n\n  %s\n', pkg.bugs.url)
       console.error('- Remember to specify your OS and hardware')
+
+      if (err) {
+        console.error('\nDetailed error message:\n')
+        console.error(err.stack)
+      }
+
       process.exit(1)
       return
     }
 
     console.log('Found location - lat: %d, long: %d, accuracy: %d', loc.lat, loc.lng, loc.accuracy)
 
-    cb(null, loc)
+    cb(loc)
   })
 }
 
