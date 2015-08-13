@@ -73,9 +73,9 @@ function preview () {
 }
 
 function interactive () {
-  var currentCoords = geopkg.getPackageCoords()
-  if (currentCoords) {
-    currentCoords = { lat: currentCoords[0], lng: currentCoords[1] }
+  var currentPkg = geopkg.getPackage()
+  if (currentPkg && currentPkg.coordinates) {
+    var currentCoords = { lat: currentPkg.coordinates[0], lng: currentPkg.coordinates[1] }
     selectCoordsInteractively(currentCoords)
   } else {
     _getLocation(selectCoordsInteractively)
