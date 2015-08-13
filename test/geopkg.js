@@ -1,9 +1,9 @@
 'use strict'
 
 var fs = require('fs')
-var os = require('os')
 var path = require('path')
 var test = require('tape')
+var osTmpdir = require('os-tmpdir')
 var geopkg = require('../lib/geopkg')
 
 test('geopkg.locate()', function (t) {
@@ -25,7 +25,7 @@ test('geopkg.locate()', function (t) {
 })
 
 test('geopkg.updatePkgCoordinates()', function (t) {
-  var dir = os.tmpdir()
+  var dir = osTmpdir()
   var file = path.join(dir, 'package.json')
   process.chdir(dir)
   fs.writeFile(file, '{"foo":"bar"}', function (err) {
