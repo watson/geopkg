@@ -4,7 +4,7 @@ A simple module for tagging your npm modules with latitude and longitude
 (geotagging) of where on the planet the module was published.
 
 [![Build status](https://travis-ci.org/watson/geopkg.svg?branch=master)](https://travis-ci.org/watson/geopkg)
-[![js-standard-style](https://raw.githubusercontent.com/feross/standard/master/badge.png)](https://github.com/feross/standard)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 For a one-stop solution to bumping the module version *and* updating the
 package coordinates, check out
