@@ -6,14 +6,13 @@ var pkglib = require('./lib/package')
 var browser = require('./lib/browser')
 var pkg = require('./package')
 
-var cmd = process.argv[2] || 'update'
+var cmd = process.argv[2] || 'help'
 
 var usage = pkg.name + ' ' + pkg.version + '\n' +
   pkg.description + '\n\n' +
   'Usage: ' + pkg.name + ' [command]\n\n' +
-  'If no commands are given, the default "update" command is run\n\n' +
   'Commands:\n' +
-  '  help         Show this help\n' +
+  '  help         Show this help (default)\n' +
   '  update       Updates the current package.json with current coordinates\n' +
   '  open         Opens the coordinates found in package.json in the browser\n' +
   '  preview      Finds your current location and previews it in the browser\n' +
