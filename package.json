@@ -36,8 +36,8 @@
   },
   "devDependencies": {
     "os-tmpdir": "^1.0.1",
-    "standard": "^4.3.1",
-    "tape": "^4.0.0"
+    "standard": "^5.0.2",
+    "tape": "^4.1.0"
   },
   "repository": {
     "type": "git",
