@@ -6,7 +6,7 @@
     "geopkg": "index.js"
   },
   "scripts": {
-    "test": "standard && tape test.js",
+    "test": "standard && tape test/*.js",
     "postversion": "tag=`git describe --exact-match --tags $(git log -n1 --pretty='%h')` && node . && git add -A && git commit -C HEAD --amend && git tag $tag -f"
   },
   "keywords": [

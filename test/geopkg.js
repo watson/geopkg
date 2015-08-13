@@ -1,12 +1,12 @@
 'use strict'
 
-var os = require('os')
 var fs = require('fs')
+var os = require('os')
 var path = require('path')
 var test = require('tape')
-var geopkg = require('./lib/geopkg')
+var geopkg = require('../lib/geopkg')
 
-test('#locate()', function (t) {
+test('geopkg.locate()', function (t) {
   geopkg.locate(function (err, loc) {
     if (err) {
       // if the test machine doesn't support wifi scanning, we can only test
@@ -24,13 +24,13 @@ test('#locate()', function (t) {
   })
 })
 
-test('#updatePkg()', function (t) {
+test('geopkg.updatePkgCoordinates()', function (t) {
   var dir = os.tmpdir()
   var file = path.join(dir, 'package.json')
   process.chdir(dir)
   fs.writeFile(file, '{"foo":"bar"}', function (err) {
     t.error(err)
-    geopkg.updatePkg({ lat: 1.1, lng: 1.2, accuracy: 10 }, function (err) {
+    geopkg.updatePkgCoordinates({ lat: 1.1, lng: 1.2, accuracy: 10 }, function (err) {
       t.error(err)
       fs.readFile(file, function (err, data) {
         t.error(err)
