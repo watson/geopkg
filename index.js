@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict'
 
+var pkgio = require('package-json-io')
 var geopkg = require('./lib/geopkg')
-var pkglib = require('./lib/package')
 var browser = require('./lib/browser')
 var pkg = require('./package')
 
@@ -51,7 +51,7 @@ function update () {
 }
 
 function open () {
-  pkglib.load(function (err, data) {
+  pkgio.read(function (err, data) {
     if (!err && !data.coordinates) {
       err = new Error('The package.json doesn\'t contain any coordinates')
     }
@@ -75,7 +75,7 @@ function preview () {
 }
 
 function interactive () {
-  pkglib.load(function (err, data) {
+  pkgio.read(function (err, data) {
     if (err) return _done(err)
 
     if (data.coordinates) {

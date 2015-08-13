@@ -31,6 +31,7 @@
   "preferGlobal": true,
   "dependencies": {
     "opn": "^3.0.2",
+    "package-json-io": "^1.0.0",
     "place-geo-marker": "0.0.5",
     "wifi-triangulate": "^1.1.1"
   },
