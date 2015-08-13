@@ -27,11 +27,12 @@ geopkg [command]
 
 The commands are as follows:
 
-- `help` - Will output the help
+- `help` - Will output the help (default)
 - `update` - Updates the current package.json with current coordinates
-  (default behavior is no command is given)
 - `open` - Opens the coordinates found in package.json in the browser
 - `preview` - Finds your current location and previews it in the browser
+- `interactive` - Choose coordinates interactively by dragging a marker
+  on a map
 
 ### Update
 
@@ -72,28 +73,24 @@ geopkg preview
 This should open up Google Maps zoomed to the detected coordinates in
 your favorite browser.
 
+### Interactive
+
+To modify the detected location, run:
+
+```
+geopkg interactive
+```
+
+This should open up Google Maps zoomed to the detected coordinates in
+your favorite browser. You can now just move the marker on the map to
+the desired location. As soon as you close the browser tab, the location
+in package.json is updated accordingly.
+
 ## npm integration
 
-Newer versions of npm support a `postversion` hook which you can add to
-the package.json file in your module. Using this hook you can
-automatically geo-tag your modules when ever you run the `npm version`
-command.
-
-To achive this, do the following:
-
-1. Install geopkg as a development dependency:
-
- ```
- npm install --save-dev geopkg
- ```
-
-2. Add a `postversion` hook to the package.json file:
-
-  ```js
-  "scripts": {
-    "postversion": "tag=`git describe --exact-match --tags $(git log -n1 --pretty='%h')` && geopkg && git add -A && git commit -C HEAD --amend && git tag $tag -f"
-  }
-  ```
+If you want to automatically tag your npm releases with your geo
+coordinates, take a look at
+[npm-geoversion](https://github.com/watson/npm-geoversion).
 
 ## License
 
