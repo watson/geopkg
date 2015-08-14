@@ -29,7 +29,7 @@ The commands are as follows:
 
 - `help` - Will output the help (default)
 - `update` - Updates the current package.json with current coordinates
-- `open` - Opens the coordinates found in package.json in the browser
+- `view` - Views the coordinates found in package.json in the browser
 - `preview` - Finds your current location and previews it in the browser
 - `interactive` - Choose coordinates interactively by dragging a marker
   on a map
@@ -49,13 +49,13 @@ holding the lat/long coordinates:
 }
 ```
 
-### Open
+### View
 
 You can easily view the coordinates that the module in cwd is tagged
 with - just run:
 
 ```
-geopkg open
+geopkg view
 ```
 
 This should open up Google Maps zoomed to the module coordinates in your

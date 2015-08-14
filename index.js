@@ -14,7 +14,7 @@ var usage = pkg.name + ' ' + pkg.version + '\n' +
   'Commands:\n' +
   '  help         Show this help (default)\n' +
   '  update       Updates the current package.json with current coordinates\n' +
-  '  open         Opens the coordinates found in package.json in the browser\n' +
+  '  view         Opens the coordinates found in package.json in the browser\n' +
   '  preview      Finds your current location and previews it in the browser\n' +
   '  interacive   Choose coordinates interactively by dragging a marker on a map\n'
 
@@ -25,8 +25,8 @@ switch (cmd) {
   case 'update':
     update()
     break
-  case 'open':
-    open()
+  case 'view':
+    view()
     break
   case 'preview':
     preview()
@@ -50,7 +50,7 @@ function update () {
   })
 }
 
-function open () {
+function view () {
   pkgio.read(function (err, data) {
     if (!err && !data.coordinates) {
       err = new Error('The package.json doesn\'t contain any coordinates')
