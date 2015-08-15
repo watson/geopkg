@@ -6,10 +6,6 @@ A simple module for tagging your npm modules with latitude and longitude
 [![Build status](https://travis-ci.org/watson/geopkg.svg?branch=master)](https://travis-ci.org/watson/geopkg)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-For a one-stop solution to bumping the module version *and* updating the
-package coordinates, check out
-[npm-geoversion](https://github.com/watson/npm-geoversion) instead.
-
 ## Installation
 
 ```
@@ -120,12 +116,6 @@ geopkg preview
 
 This should open up Google Maps zoomed to the detected coordinates in
 your favorite browser.
-
-## npm integration
-
-If you want to automatically tag your npm releases with your geo
-coordinates, take a look at
-[npm-geoversion](https://github.com/watson/npm-geoversion).
 
 ## License
 
