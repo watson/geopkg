@@ -27,17 +27,48 @@ geopkg [command]
 
 The commands are as follows:
 
-- `help` - Will output the help (default)
+- `help` - Get help for specific command. Run: `geopkg help [command]`
+- `version` - Bump the version and update the coordinates in a single commit
 - `update` - Updates the current package.json with current coordinates
+- `edit` - Edit coordinates in package.json by dragging a marker on a map
 - `view` - Views the coordinates found in package.json in the browser
 - `preview` - Finds your current location and previews it in the browser
-- `interactive` - Choose coordinates interactively by dragging a marker
-  on a map
 
-### Update
+### Help
+
+Get help for specific command:
 
 ```
-geopkg update
+geopkg help [command]
+```
+
+### Version
+
+Bump the version of your npm module **and** automatically tag it with
+your current geo-coordinates.
+
+```
+geopkg version (<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease) [options]
+```
+
+This will do exactly the same as [`npm
+version`](https://docs.npmjs.com/cli/version) plus add your current
+position on planet earth to the package.json file:
+
+```json
+{
+  "coordinates": [55.8079696, 12.502925]
+}
+```
+
+**Options:**
+
+- `-i` - Interactive mode: Modify the location by dragging a pin on a map
+
+### Version
+
+```
+geopkg update [options]
 ```
 
 This will update your `package.json` file with a `coordinates` property
@@ -48,6 +79,23 @@ holding the lat/long coordinates:
   "coordinates": [55.8079696, 12.502925]
 }
 ```
+
+**Options:**
+
+- `-i` - Interactive mode: Modify the location by dragging a pin on a map
+
+### Edit
+
+To modify the coordinates in package.json, run:
+
+```
+geopkg edit
+```
+
+This should open up Google Maps zoomed to the coordinates in your
+favorite browser. You can now just move the marker on the map to the
+desired location. As soon as you close the browser tab, the location in
+package.json is updated accordingly.
 
 ### View
 
@@ -72,19 +120,6 @@ geopkg preview
 
 This should open up Google Maps zoomed to the detected coordinates in
 your favorite browser.
-
-### Interactive
-
-To modify the detected location, run:
-
-```
-geopkg interactive
-```
-
-This should open up Google Maps zoomed to the detected coordinates in
-your favorite browser. You can now just move the marker on the map to
-the desired location. As soon as you close the browser tab, the location
-in package.json is updated accordingly.
 
 ## npm integration
 
