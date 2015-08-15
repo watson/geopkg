@@ -1,6 +1,6 @@
 {
   "name": "geopkg",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Tag npm modules with lat/long of where on the planet the module was published.",
   "bin": {
     "geopkg": "bin/geopkg.js"
@@ -54,7 +54,7 @@
   },
   "homepage": "https://github.com/watson/geopkg",
   "coordinates": [
-    53.031810979537475,
-    13.307164440014617
+    53.031773248623956,
+    13.307595308801297
   ]
 }
