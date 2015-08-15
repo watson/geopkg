@@ -2,8 +2,9 @@
 'use strict'
 
 var shared = require('../lib/shared')
+var argv = require('../lib/argv')
 
-var cmd = process.argv[2] || 'help'
+var cmd = argv._[0] || 'help'
 
 try {
   cmd = require('../lib/commands/' + cmd)
