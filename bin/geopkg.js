@@ -14,4 +14,4 @@ try {
   process.exit(1)
 }
 
-cmd()
+cmd.run()
