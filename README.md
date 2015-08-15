@@ -61,7 +61,7 @@ position on planet earth to the package.json file:
 
 - `-i` - Interactive mode: Modify the location by dragging a pin on a map
 
-### Version
+### Update
 
 ```
 geopkg update [options]
