@@ -24,7 +24,9 @@
     "lon",
     "latitude",
     "longitude",
-    "coordinates"
+    "coordinates",
+    "version",
+    "bump"
   ],
   "author": "Thomas Watson Steen <w@tson.dk>",
   "license": "MIT",
