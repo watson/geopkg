@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "description": "Tag npm modules with lat/long of where on the planet the module was published.",
   "bin": {
-    "geopkg": "index.js"
+    "geopkg": "bin/geopkg.js"
   },
   "scripts": {
     "test": "standard && tape test/*.js"
