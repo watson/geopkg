@@ -61,6 +61,16 @@ position on planet earth to the package.json file:
 
 - `-i` - Interactive mode: Modify the location by dragging a pin on a map
 
+#### .bash_profile
+
+A good way to both streamline the `npm version` command and to use geopkg minimally is to add this to your .bash_profile:
+
+```sh
+function npmv () {
+  geopkg version "$1"
+}
+```
+
 ### Update
 
 ```
